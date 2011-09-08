@@ -22,7 +22,7 @@
 
 	<!-- include code mirror default css and the theme you want. -->
 	<link rel="stylesheet" href="../extensions/codemirror/deck.codemirror.css">
-	<link rel="stylesheet" href="../extensions/codemirror/themes/elegant.css">
+	<link rel="stylesheet" href="../extensions/codemirror/themes/default.css">
 
 	<!-- Theme CSS files (menu swaps these out) -->
 	<link rel="stylesheet" id="transition-theme-link" href="../themes/transition/horizontal-slide.css">
@@ -40,24 +40,56 @@
 
 		<section class="slide" id="textarea-code">
 			<h2> This Code is in a Text Area! </h2>
-			<textarea id="code" name="code" class="code" mode="javascript" style="display: none;" theme="elegant">// codemirror demo party!
+			<div><textarea id="code" name="code" class="code" mode="javascript" style="display: none;" runnable="true">// codemirror demo party!
 var greeter = function(name) {
-  return "Why hello there" + name;
+  return "Why hello there " + name;
 }
-greeter("Joe");</textarea>
+console.log(greeter("Joe"));</textarea></div>
+		<br />
+		<h3> You can edit it and run it again! Try it! </h3>
 		</section>
+
+		<section class="slide" id="textarea-spec">
+			<h2> That code was created with a text area that had the following attributes: </h2>
+			<ul>
+				<li>class - "code"</li>
+				<li>mode  - "javascript"</li>
+				<li>runnable - "true" </li>
+			</ul>
+			<h3> The rest just HAPPENS </h3>
+			<p> Code blocks aren't runnable by default. Because you might want to put crazy non runnable code in there. Like, html. </p>
+			<p> You can specify a codemirror theme as long as you include the stylesheet for it by setting the <i>theme</i> attribute </p>
+		</section>
+
 
 		<section class="slide" id="div-code">
 			<h2> This Code is in a div! </h2>
 			<div>
-				<div id="code" name="code" class="code" mode="javascript" style="display: none;" theme="elegant">// codemirror demo party!
+				<div id="code" name="code" class="code" mode="javascript" style="display: none;">// codemirror demo party!
 var obj = { text : "Hello all!"};
 console.log("HI THERE");</div>
 			</div>
 			</br>
 			<p>
-				Go ahead, click in there. Type something. No one's watching...
+				It looks like this: <br />
+				<code>
+&lt;div id=&quot;code&quot; class=&quot;code&quot; name=&quot;code&quot; mode=&quot;javascript&quot; style=&quot;display: none;&quot;&gt;
+<br>// codemirror demo party!
+<br>var obj = { text : &quot;Hello all!&quot;};
+<br>console.log(&quot;HI THERE&quot;);
+<br>&lt;/div&gt;
+				</code>
 			</p>
+		</section>
+
+		<section class="slide" id="textarea-code">
+			<h2> Two runnable code blocks?! CRAZY! </h2>
+			<h3> First </h3>
+			<div><textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">// codemirror demo party!
+console.log(1);</textarea></div>
+			<h3> Second </h3>
+			<div><textarea id="code3" name="code" class="code" mode="javascript" style="display: none;" runnable="true">// codemirror demo party!
+console.log(2);</textarea></div>
 		</section>
 
 		<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>

@@ -43,7 +43,8 @@ var CodeMirror=function(){function a(b,c){function bv(a){return a>=0&&a<$.length
   */
   $.extend(true, $[deck].defaults, {
     classes: {
-      codemirror: 'deck-codemirror'
+      codemirror: 'deck-codemirror',
+      codemirrorresult: 'deck-codemirror-result'
     },
     
     selectors: {
@@ -57,9 +58,10 @@ var CodeMirror=function(){function a(b,c){function bv(a){return a>=0&&a<$.length
       lineNumbers : true,
       theme : "default",
       mode : "javascript",
-      theme : "elegant",
+      theme : "default",
       indentUnit : 1,
-      indentWithTabs : false
+      indentWithTabs : false,
+      runnable : false
     }
   });
   
@@ -118,6 +120,37 @@ var CodeMirror=function(){function a(b,c){function bv(a){return a>=0&&a<$.length
         $(editor.getWrapperElement()).keydown(function(e) {
           e.stopPropagation();
         });
+
+        if (opts.codemirror.runnable || codeblock.attr("runnable")) {
+          // make the code runnable
+          var wrapper = editor.getWrapperElement(),
+              button  = $('<div>', {
+                "class" : "button",
+                text : "Run"
+              }).prependTo(wrapper),
+              output = $('<div>', {
+                "class" : opts.classes.codemirrorresult
+              }).appendTo($(wrapper).parent());
+
+          button.click(function(editor, output){
+            return function(event) {
+              var real_console_log = console.log;
+
+              console.log = function(msg) {
+                if (output.html() !== "") {
+                  output.html(output.html() + "<br />" + msg);  
+                } else {
+                  output.html(msg);
+                }
+                
+              };
+
+              eval(editor.getValue());
+
+              console.log = real_console_log;
+            }
+          }(editor, output));
+        }
       }
     });
   };

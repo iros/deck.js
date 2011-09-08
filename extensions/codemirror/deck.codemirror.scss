@@ -1,12 +1,39 @@
 .deck-container .slide { 
 
   font-weight: normal;
-
+  .deck-codemirror-result {
+    border: 1px solid #ddd;
+    border-top: none;
+    padding: 10px;
+    font-family: monospace;
+  }
   .CodeMirror {
     line-height: 1em;
     font-family: monospace;
     overflow: auto;
     height: 100%;
+    border: 1px solid #ddd;
+
+    .button {
+      padding: 5px;
+      cursor: pointer;
+      background-color: #ddd;
+      position: relative;
+      float: right;
+      font-size: 11px;
+      line-height: 16px;
+      padding: 2px 6px;
+      margin-bottom: -20px;
+      margin-right: 10px;
+      border-radius: 4px;
+      -moz-border-radius: 4px;
+      -webkit-border-radius: 4px;
+      z-index: 1;
+      top: 8px;
+    }
+    .button:hover {
+      background-color: #eee;
+    }
   }
 
   .CodeMirror-scroll {
