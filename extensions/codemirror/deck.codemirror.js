@@ -134,19 +134,41 @@ var CodeMirror=function(){function a(b,c){function bv(a){return a>=0&&a<$.length
 
           button.click(function(editor, output){
             return function(event) {
+
+              // save the default logging behavior.
               var real_console_log = console.log;
 
-              console.log = function(msg) {
+              // Following Dean Edward's fantastic sandbox code:
+              // http://dean.edwards.name/weblog/2006/11/sandbox/+evaluating+js+in+an+iframe
+              // create an iframe sandbox for this element.
+              var iframe = $("<iframe>")
+                .css("display", "none")
+                .appendTo($d.find('body'));
+              
+              // write a script into the <iframe> and create the sandbox
+              frames[frames.length - 1].document.write(
+                "<script>"+
+                "var MSIE/*@cc_on =1@*/; console=parent.console;"+ // sniff
+                "parent.sandbox=MSIE?this:{eval:function(s){return eval(s)}}"+
+                "<\/script>"
+              );
+
+              // Overwrite the default log behavior to pipe to an output element.
+              console.log = function(msg) {     
                 if (output.html() !== "") {
                   output.html(output.html() + "<br />" + msg);  
                 } else {
                   output.html(msg);
                 }
-                
               };
 
-              eval(editor.getValue());
+              // eval in the sandbox.
+              sandbox.eval(editor.getValue());
 
+              // get rid of the frame. New Frame for every context.
+              iframe.remove();
+
+              // set the old logging behavior back.
               console.log = real_console_log;
             }
           }(editor, output));
