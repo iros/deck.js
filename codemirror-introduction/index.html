@@ -21,8 +21,8 @@
 	<link rel="stylesheet" href="../extensions/hash/deck.hash.css">
 
 	<!-- include code mirror default css and the theme you want. -->
-	<link rel="stylesheet" href="../extensions/codemirror/deck.codemirror.css">
-	<link rel="stylesheet" href="../extensions/codemirror/themes/default.css">
+	<link rel="stylesheet" href="../../deck.js-codemirror/deck.codemirror.css">
+	<link rel="stylesheet" href="../../deck.js-codemirror/themes/default.css">
 
 	<!-- Theme CSS files (menu swaps these out) -->
 	<link rel="stylesheet" id="transition-theme-link" href="../themes/transition/horizontal-slide.css">
@@ -64,7 +64,6 @@ console.log(greeter("Joe"));</textarea></div>
 			<p> You can specify a codemirror theme as long as you include the stylesheet for it by setting the <i>theme</i> attribute </p>
 		</section>
 
-
 		<section class="slide" id="div-code">
 			<h2> This Code is in a div! </h2>
 			<div>
@@ -86,6 +85,41 @@ console.log("HI THERE");</div>
 		</section>
 
 		<section class="slide" id="textarea-code">
+			<h2> HTML Syntax?! Sweet. </h2>
+			<p>
+			  Note that it's defined by being put inside a textarea, that way it doesn't
+			  get evaluated. Replicate that however you see fit.
+			  Also, set the mode="text/html", not just "html".
+			</p>
+			<div>
+		  	<textarea type="text/html" class="code" mode="text/html" style="display: none;">// codemirror demo party!
+<html style="color: green">
+  <!-- this is a comment -->
+  <head>
+    <title>Mixed HTML Example</title>
+    <style type="text/css">
+      h1 {font-family: comic sans; color: #f0f;}
+      div {background: yellow !important;}
+      body {
+        max-width: 50em;
+        margin: 1em 2em 1em 5em;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Mixed HTML Example</h1>
+    <script>
+      function jsFunc(arg1, arg2) {
+        if (arg1 && arg2) document.body.innerHTML = "achoo";
+      }
+    </script>
+  </body>
+</html>
+        </textarea>
+      </div>
+		</section>
+    		
+		<section class="slide" id="textarea-code">
 			<h2> Two runnable code blocks?! CRAZY! </h2>
 			<h3> First </h3>
 			<div><textarea id="code2" name="code" class="code" mode="javascript" style="display: none;" runnable="true">// codemirror demo party!
@@ -98,7 +132,7 @@ console.log(2);</textarea></div>
 
 		<section class="slide" id="info">
 			<h2> Repo: </h2>
-			<a href="https://github.com/iros/deck.js/tree/extension.codemirror">https://github.com/iros/deck.js/tree/extension.codemirror</a>
+			<a href="https://github.com/iros/deck.js-codemirror">https://github.com/iros/deck.js-codemirror</a>
 			<h3> By: </h3>
 			<a href="http://twitter.com/ireneros">@ireneros</a>
 		</section>
@@ -131,7 +165,7 @@ console.log(2);</textarea></div>
 	<script src="../extensions/status/deck.status.js"></script>
 	<script src="../extensions/navigation/deck.navigation.js"></script>
 	<script src="../extensions/hash/deck.hash.js"></script>
-	<script src="../extensions/codemirror/deck.codemirror.js"></script>
+	<script src="../../deck.js-codemirror/deck.codemirror.js"></script>
 
 	<!-- Specific to this page -->
 	<script src="introduction.js"></script>
